@@ -1,0 +1,73 @@
+#file: noinspection SpringBootApplicationYaml
+server:
+  port: 8222
+
+spring:
+  application:
+    name: api-gateway
+
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins:
+              - "http://localhost:4200"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+            maxAge: 3600
+
+      routes:
+        - id: USER-SERVICE
+          uri: http://localhost:8081
+          predicates:
+            - Path=/api/v1/users/**
+          filters:
+            - StripPrefix=0
+        - id: ITEM-SERVICE
+          uri: http://localhost:8082
+          predicates:
+            - Path=/api/v1/items/**
+          filters:
+            - StripPrefix=0
+        - id: RECLAMATION-SERVICE
+          uri: http://localhost:8086
+          predicates:
+            - Path=/api/v1/reclamations/**
+          filters:
+            - StripPrefix=0
+        - id: MATCHING-SERVICE
+          uri: http://localhost:8084
+          predicates:
+            - Path=/api/v1/matchings/**
+          filters:
+            - StripPrefix=0
+        - id: PAYMENT-SERVICE
+          uri: http://localhost:8085
+          predicates:
+            - Path=/api/v1/payments/**
+          filters:
+            - StripPrefix=0  # Ne rien enlever du chemin, car ton controller l'attend tel quel
+        - id: NOTIFICATION-SERVICE
+          uri: http://localhost:8083
+          predicates:
+            - Path=/api/v1/notifications/**
+          filters:
+            - StripPrefix=0  # Ne rien enlever du chemin, car ton controller l'attend tel quel
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/

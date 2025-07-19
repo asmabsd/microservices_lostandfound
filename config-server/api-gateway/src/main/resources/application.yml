@@ -1,0 +1,12 @@
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          # lower-case-service-id: true
+          enabled: true
+      routes:
+        - id: USER-SERVICE
+          uri: http://localhost:8081/
+          predicates:
+            - Path=/USER-SERVICE/**

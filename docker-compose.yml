@@ -1,0 +1,125 @@
+version: "3.9"
+
+services:
+
+  user-service:
+    container_name: user-service
+    build: ./user-service
+    ports:
+      - "8081:8081"
+    image: user-service
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db-mysql:3306/userdb?createDatabaseIfNotExist=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://service-registry:8761/eureka/
+    depends_on:
+      - db-mysql
+      - service-registry
+    restart: unless-stopped
+
+  item-service:
+    container_name: item-service
+    build: ./item-service
+    ports:
+      - "8082:8082"
+    image: item-service
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db-mysql:3306/itemdb?createDatabaseIfNotExist=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://service-registry:8761/eureka/
+    depends_on:
+      - db-mysql
+      - service-registry
+    restart: unless-stopped
+
+  notification-service:
+    container_name: notification-service
+    build: ./notification-service
+    ports:
+      - "8083:8083"
+    image: notification-service
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://service-registry:8761/eureka/
+    depends_on:
+      - service-registry
+    restart: unless-stopped
+
+  matching-service:
+    container_name: matching-service
+    build: ./matching-service
+    ports:
+      - "8084:8084"
+    image: matching-service
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://service-registry:8761/eureka/
+    depends_on:
+      - service-registry
+    restart: unless-stopped
+
+  payment-service:
+    container_name: payment-service
+    build: ./payment-service
+    ports:
+      - "8085:8085"
+    image: payment-service
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db-mysql:3306/paymentdb?createDatabaseIfNotExist=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://service-registry:8761/eureka/
+    depends_on:
+      - db-mysql
+      - service-registry
+    restart: unless-stopped
+
+  reclamation-service:
+    container_name: reclamation-service
+    build: ./reclamation-service
+    ports:
+      - "8086:8086"
+    image: reclamation-service
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db-mysql:3306/reclamationdb?createDatabaseIfNotExist=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://service-registry:8761/eureka/
+    depends_on:
+      - db-mysql
+      - service-registry
+    restart: unless-stopped
+
+  api-gateway:
+    container_name: api-gateway
+    build: ./api-gateway
+    ports:
+      - "8222:8222"
+    image: api-gateway
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://service-registry:8761/eureka/
+    depends_on:
+      - service-registry
+    restart: unless-stopped
+
+  service-registry:
+    container_name: service-registry
+    build: ./service-registry
+    hostname: service-registry
+    ports:
+      - "8761:8761"
+    image: service-registry
+    environment:
+      - eureka.client.registerWithEureka=false
+      - eureka.client.fetchRegistry=false
+    restart: unless-stopped
+
+  db-mysql:
+    image: mysql:5.7
+    container_name: db-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - "3306:3306"
+    restart: unless-stopped
+
