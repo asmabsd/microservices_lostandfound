@@ -27,7 +27,7 @@ public class MatchController {
         private RestTemplate restTemplate;
 
         // URL du microservice des items (configurée via application.properties si possible)
-        private final String ITEM_SERVICE_URL = "http://localhost:8222/api/v1/items";
+        private final String ITEM_SERVICE_URL = "http://api-gateway:8222/api/v1/items";
 
         @GetMapping("/basic/{itemId}")
         public ResponseEntity<?> getBasicMatches(@PathVariable Long itemId) {

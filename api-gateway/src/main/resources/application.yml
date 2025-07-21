@@ -30,37 +30,37 @@ spring:
 
       routes:
         - id: USER-SERVICE
-          uri: http://localhost:8081
+          uri: http://user-service:8081
           predicates:
             - Path=/api/v1/users/**
           filters:
             - StripPrefix=0
         - id: ITEM-SERVICE
-          uri: http://localhost:8082
+          uri: http://item-service:8082
           predicates:
             - Path=/api/v1/items/**
           filters:
             - StripPrefix=0
         - id: RECLAMATION-SERVICE
-          uri: http://localhost:8086
+          uri: http://reclamation-service:8086
           predicates:
             - Path=/api/v1/reclamations/**
           filters:
             - StripPrefix=0
         - id: MATCHING-SERVICE
-          uri: http://localhost:8084
+          uri: http://matching-service:8084
           predicates:
             - Path=/api/v1/matchings/**
           filters:
             - StripPrefix=0
         - id: PAYMENT-SERVICE
-          uri: http://localhost:8085
+          uri: http://payment-service:8085
           predicates:
             - Path=/api/v1/payments/**
           filters:
             - StripPrefix=0  # Ne rien enlever du chemin, car ton controller l'attend tel quel
         - id: NOTIFICATION-SERVICE
-          uri: http://localhost:8083
+          uri: http://notification-service:8083
           predicates:
             - Path=/api/v1/notifications/**
           filters:
@@ -70,4 +70,4 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://service-registry:8761/eureka/

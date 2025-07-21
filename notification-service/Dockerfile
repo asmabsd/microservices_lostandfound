@@ -1,4 +1,4 @@
-FROM openjdk:8
+FROM openjdk:17
 EXPOSE 8083
-ADD target/notification-service-1.0.jar NotificationMS.jar
+ADD target/notification-service-0.0.1-SNAPSHOT.jar NotificationMS.jar
 ENTRYPOINT ["java","-jar","NotificationMS.jar"]
