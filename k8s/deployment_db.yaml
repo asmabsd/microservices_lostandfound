@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db-mysql
+  template:
+    metadata:
+      labels:
+        app: db-mysql
+    spec:
+      containers:
+        - name: db-mysql
+          image: mysql:5.7
+
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: root
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+            - name: mysql-data
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: mysql-data
+          emptyDir: {}  # À remplacer par un PVC si tu veux persister les données

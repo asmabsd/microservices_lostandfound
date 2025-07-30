@@ -6,27 +6,21 @@ spring:
   application:
     name: api-gateway
 
+
   cloud:
     gateway:
-      discovery:
-        locator:
-          enabled: true
-          lowerCaseServiceId: true
       globalcors:
         cors-configurations:
           '[/**]':
-            allowedOrigins:
-              - "http://localhost:4200"
-            allowedMethods:
-              - GET
-              - POST
-              - PUT
-              - DELETE
-              - OPTIONS
-            allowedHeaders:
-              - "*"
+            allowedOrigins: 
+              - "http://132.220.59.110"  
+              - "http://localhost:4200"  
+            allowedMethods: "*"
+            allowedHeaders: "*"
             allowCredentials: true
-            maxAge: 3600
+            exposedHeaders:
+              - "Authorization"
+              - "Content-Type"
 
       routes:
         - id: USER-SERVICE

@@ -35,7 +35,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200/")
+@CrossOrigin(origins = {"http://localhost:4200", "http://132.220.59.110"})
 @RequestMapping("/api/v1/users")
 public class AuthController {
     private static final Logger logger = LoggerFactory.getLogger(AuthController.class);

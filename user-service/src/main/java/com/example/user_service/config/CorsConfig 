@@ -1,0 +1,16 @@
+package com.example.user_service.config;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;  
+
+@Configuration
+public class CorsConfig implements WebMvcConfigurer {
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")  // Applique CORS à toutes les routes
+                .allowedOrigins("*") // Autorise toutes les origines (à remplacer par votre URL Angular en prod)
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                .allowedHeaders("*")
+                .allowCredentials(false); // Si vous utilisez des cookies/jwt, passez à `true`
+    }
+}

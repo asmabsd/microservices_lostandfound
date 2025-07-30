@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: reclamation-service
+spec:
+  selector:
+    app: reclamation-service
+  ports:
+    - port: 8086
+      targetPort: 8086
+  type: NodePort

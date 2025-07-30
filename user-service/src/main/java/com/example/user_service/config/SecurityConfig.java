@@ -43,6 +43,7 @@ public class SecurityConfig {
 
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                        
                         .requestMatchers("/api/v1/users/login", "/api/v1/users/register","/api/v1/users/premium/**","/api/v1/users/upload-image/**", "/api/v1/users/uploads/**", "/api/v1/users/list/update/**","/api/v1/users/email/**","/api/v1/users/list","/api/v1/users/debug/users").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/api/v1/users/premium/**").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/api/v1/users/list/update/**").permitAll()
@@ -62,7 +63,9 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("http://localhost:4200")); // ✅ App Angular
+
+         config.setAllowedOrigins(List.of("http://localhost:4200", "http://132.220.59.110"));// ✅ App Angular
+
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("Authorization", "Content-Type", "Accept"));
         config.setExposedHeaders(List.of("Authorization"));
@@ -95,7 +98,8 @@ public class SecurityConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:4200") // URL de votre app Angular
+                        .allowedOrigins("*") // URL de votre app Angular
+
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);

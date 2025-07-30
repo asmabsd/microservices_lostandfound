@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reclamation-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: reclamation-service
+  template:
+    metadata:
+      labels:
+        app: reclamation-service
+    spec:
+      containers:
+        - name: reclamation-service
+          image: lostandfoundacr.azurecr.io/reclamation-service:latest
+          ports:
+            - containerPort: 8086
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://db-mysql:3306/reclamationdb?createDatabaseIfNotExist=true&useSSL=false
+            - name: SPRING_DATASOURCE_USERNAME
+              value: root
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: root
+            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+              value: http://service-registry:8761/eureka/
