@@ -1,22 +1,122 @@
-🎥 [DEMO] Smart Lost & Found – Un projet personnel basé sur l’architecture microservices
+🎥 [DEMO] Smart Lost & Found – Une plateforme intelligente basée sur l’architecture microservices
+🔍 Présentation
+Smart Lost & Found est un projet personnel que j’ai développé pour maîtriser en profondeur l’architecture microservices, de la conception à la mise en production sur Azure.
+Au-delà de l’aspect technique, ce projet répond à un besoin concret et local : en Tunisie, la majorité des personnes utilisent encore Facebook pour signaler ou rechercher un objet perdu – une méthode peu fiable et non structurée.
 
-Ce projet m’a permis de maîtriser l’architecture microservices de A à Z, de la conception jusqu’au déploiement cloud sur Azure.
+👉 C’est dans ce contexte que Smart Lost & Found prend tout son sens : proposer une plateforme web intelligente dédiée à la gestion des objets perdus et trouvés, de manière centralisée, rapide et efficace.
 
- Mais surtout, il répond à un vrai besoin local : en Tunisie, on utilise encore Facebook pour retrouver nos objets perdus… une solution ni fiable ni adaptée.
+⚙️ Fonctionnalités clés
+👤 Gestion des utilisateurs
+Inscription / Connexion sécurisée
 
-💡 Smart Lost & Found, c’est une plateforme web intelligente pour gérer les objets perdus/trouvés, avec :
+Modification du profil (photo, informations personnelles)
 
-👤 Gestion du profil utilisateur
+Rôle utilisateur : normal ou premium
 
-🧾 Affichage et publication des objets
+🧾 Gestion des objets perdus/trouvés
+Publication d’un objet avec photo, description et lieu
 
-🎯 Système de score : 1000 points = 1 mois premium gratuit
+Filtrage et recherche d’objets par catégorie, date, lieu
 
-⭐️ Abonnement premium avec :
+Système de matching automatique basé sur l’IA
 
-Matching automatique IA (images + attributs via modèle Python)
+💬 Réclamations et notifications
+Possibilité de déclarer un objet retrouvé ou perdu
 
-Génération AI des descriptions d’objets et réclamations
+Suivi des réclamations via tableau de bord
+
+Notification automatique par email
+
+🎯 Gamification et récompenses
+Système de score : chaque action rapporte des points
+
+Exemple : 1000 points = 1 mois d’abonnement premium gratuit
+
+🚀 Stack Technique
+🧩 Backend (Java Spring Boot – Microservices)
+user-service – gestion des utilisateurs
+
+item-service – gestion des objets
+
+matching-service – matching automatique via IA
+
+notification-service – envoi des emails
+
+reclamation-service – réclamations
+
+payment-service – gestion des paiements (abonnements premium)
+
+ai-service – service d’intelligence artificielle (analyse d’image/texte)
+
+api-gateway – point d’entrée unique
+
+service-registry – Eureka pour la découverte de services
+
+🌐 Frontend (Angular)
+Interface responsive et moderne
+
+Tableau de bord utilisateur/admin
+
+Intégration avec tous les microservices
+
+☁️ DevOps & Cloud
+Déploiement sur Azure Container Apps
+
+Docker + Docker Compose pour l’environnement local
+
+Base de données : MySQL
+
+🖥️ Comment exécuter le projet en local
+🔁 Pré-requis
+Java 17+
+
+Node.js / npm
+
+Angular CLI
+
+Docker (recommandé)
+
+📥 Étapes
+Cloner les projets :
+
+Backend (Spring Boot) : cloner tous les microservices disponibles dans /backend
+
+Frontend (Angular) : cloner le projet Angular dans /frontend
+
+Démarrer les microservices Spring Boot :
+
+Utiliser IntelliJ ou VS Code
+
+Lancer les services un par un ou via Docker Compose
+
+Lancer le frontend Angular :
+
+npm install
+ng serve
+Accéder à l’application :
+👉 http://localhost:4200
+
+NB : N'oublier pas de lancer le script python 
+accéder a l'emplacement du fichier ai_service.py 
+taper dans cmd 
+python ai_service.py 
+
+📷 Aperçu visuel
+<img src="demo-screenshot.png" alt="Aperçu Smart Lost & Found" width="600"/>
+💡 Objectifs atteints
+Mise en œuvre complète de l'architecture microservices
+
+Utilisation d’outils DevOps modernes
+
+Déploiement sur le cloud Azure
+
+Création d’un service IA de matching image/texte
+
+Réponse à un vrai besoin sociétal en Tunisie
+
+📬 Contact
+Pour toute question ou collaboration :
+📧 contact@lostandfound.com
 
 🛠️ Stack technique :
 
@@ -53,3 +153,12 @@ ci joint mon démonstration et des captures d 'écran démonstratives
 <img width="959" height="410" alt="3" src="https://github.com/user-attachments/assets/aee49485-f632-48fc-aa10-b07b2d05ab3f" />
 <img width="806" height="233" alt="4" src="https://github.com/user-attachments/assets/a2eee51c-eeca-421b-a7b0-acb1d665b0a7" />
 video de demo : 
+https://www.linkedin.com/posts/asma-boussaada_demo-smart-lost-found-un-projet-activity-7359235162091442177-CCGx?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD3RDdMB8MFhymwcy4xqrFha_pEh8kF0PrE
+
+
+©️ Mentions légales
+Ce projet a été réalisé par Asma Boussaada dans un cadre personnel, éducatif et expérimental.
+
+Vous êtes libre de vous en inspirer pour créer vos propres projets, apprendre ou expérimenter. Cependant, merci de ne pas copier intégralement l’idée ou le projet tel quel.
+Prenez ce projet comme une base d’inspiration pour développer vos propres solutions, avec votre propre vision, vos fonctionnalités et vos améliorations.
+
